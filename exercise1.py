@@ -1,4 +1,7 @@
 import datetime
+import json
+
+study_log = {}
 
 current_date = datetime.datetime.now()
 todays_task = input("What did you do today?");
@@ -16,13 +19,19 @@ while True:
 difficulties_encountered = input("Any blockers?")
 
 
+#study_log[current_date] the current date is the key, so basically its a nested dictionary, the value is another dictionary with the details of the session.
+study_log[current_date] = {
+	"task": todays_task,
+	"duration": duration,
+	"problems_solved": problems_solved,
+	"rating": todays_rating,
+	"difficulties": difficulties_encountered
+}
+
+print("Today's study log:", study_log[current_date])
+
 with open("study_log.txt", "a") as f:
-	f.write(f"Date: {current_date}\n")
-	f.write(f"Task: {todays_task}\n")
-	f.write(f"Hours: {duration}\n")
-	f.write(f"Problems: {problems_solved}\n")
-	f.write(f"Rating: {todays_rating}\n")
-	f.write(f"Blockers: {difficulties_encountered}\n")
+	f.write(json.dumps(study_log[current_date]) + "\n")
 	f.write("\n--- END OF ENTRY ---\n\n")
 	
 print("Logged. Keep going.")
