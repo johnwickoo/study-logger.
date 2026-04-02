@@ -6,3 +6,7 @@
 
 --- END OF ENTRY ---
 
+{"task": "T10", "duration": "10", "problems_solved": "10", "rating": 4, "difficulties": "19"}
+
+--- END OF ENTRY ---
+
